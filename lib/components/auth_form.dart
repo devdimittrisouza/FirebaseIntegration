@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:push_notification/components/user_image_picker.dart';
-import 'package:push_notification/models/auth_form_data.dart';
+import 'package:push_notification/core/models/auth_form_data.dart';
 
 class AuthForm extends StatefulWidget {
   final void Function(AuthFormData) onSubmit;
@@ -25,7 +25,7 @@ class _AuthFormState extends State<AuthForm> {
   void _showError(String msg){
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text(msg),
-      backgroundColor: Theme.of(context).errorColor,
+      backgroundColor: Theme.of(context).colorScheme.error,
       )
     );
   }
