@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
-import 'package:push_notification/pages/auth_page.dart';
-
-import 'package:push_notification/pages/loading_page.dart';
+import 'package:push_notification/pages/auth_or_app_page.dart';
 
 void main() {
 
@@ -21,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: AuthPage(),
+      home: AuthOrAppPage(),
       debugShowCheckedModeBanner: false,
     );
   }

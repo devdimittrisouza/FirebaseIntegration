@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:push_notification/components/auth_form.dart';
 import 'package:push_notification/core/models/auth_form_data.dart';
+import 'package:push_notification/core/services/auth/auth_mock_service.dart';
 
 
 class AuthPage extends StatefulWidget {
@@ -21,21 +22,21 @@ class _AuthPageState extends State<AuthPage> {
 
       if(formData.isLogin){
         //login
+        await AuthMockService().login(formData.email, formData.password);
       }else {
         //signup
+        await AuthMockService().signup(
+            formData.name,
+            formData.email,
+            formData.password,
+            formData.image
+        );
       }
     }catch(error){
 
     } finally{
       setState(() => _isLoading = false);
     }
-
-
-
-    print("AuthPage...");
-    print(formData.email);
-
-    //setState(() => _isLoading = false);
   }
 
   @override
