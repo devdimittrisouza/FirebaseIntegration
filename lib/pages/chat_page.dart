@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:push_notification/core/services/auth/auth_mock_service.dart';
+import 'package:push_notification/components/messages.dart';
+import 'package:push_notification/components/new_message.dart';
+import 'package:push_notification/core/services/auth/auth_service.dart';
 
 class ChatPage extends StatelessWidget {
   const ChatPage({super.key});
@@ -7,17 +9,52 @@ class ChatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      appBar: AppBar(
+        title: Text("Chat",
+        style: TextStyle(
+          color: Colors.white
+        )
+        ),
+        backgroundColor: Theme.of(context).primaryColor,
+        actions: [
+          DropdownButton(
+              icon: Icon(
+                Icons.more_vert,
+                color: Theme.of(context).primaryIconTheme.color,
+              ),
+              items: [
+                DropdownMenuItem(
+                  value: 'logout',
+                    child: Container(
+                      child: Row(
+                        children: [
+                          Icon(
+                              Icons.exit_to_app,
+                            color: Colors.black87,
+                          ),
+                          SizedBox(width: 10,
+                          ),
+                          Text("Sair")
+                        ],
+                      ),
+                    )
+                )
+              ],
+              onChanged: (value) {
+                if(value == 'logout'){
+                  AuthService().logout();
+                }
+              }
+          )
+        ],
+      ),
+      body: SafeArea(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Chat page"),
-            TextButton(
-                onPressed: (){
-                  AuthMockService().logout();
-                },
-                child: Text("Logout")
-            )
+            Expanded(
+                child: Messages()
+            ),
+            NewMessage()
           ],
         ),
       ),
